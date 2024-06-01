@@ -1,0 +1,23 @@
+default: &default
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
+  adapter: postgresql
+  encoding: unicode
+
+development:
+  <<: *default
+  database: horizon_dev_db
+  username: postgres
+  password: postgres
+  host: localhost
+
+test:
+  <<: *default
+  database: horizon_test_db 
+  username: postgres
+  password: postgres
+  host: localhost
+
+production:
+  <<: *default
+  database: horizon_prod_db
