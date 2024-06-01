@@ -29,7 +29,7 @@ class ProductsController < ApplicationController
   end
 
   def index
-    @products = Product.join(:categories).select(:name, :code, :description, :price)
+    @products = Products::FetchService.new(params).call!
   end
 
   private
