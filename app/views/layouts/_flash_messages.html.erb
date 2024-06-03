@@ -1,0 +1,10 @@
+<% if flash[:notice] %>
+  <div class="px-2">
+    <p class="text-xl text-green-900"><%= flash[:notice] %></p>
+  </div>
+<% end %>
+<% if flash[:error] %>
+    <div class="px-2">
+      <p class="text-xl text-red-900"><%= flash[:error] %></p>
+    </div>
+<% end %>

@@ -16,12 +16,12 @@ module Products
     private
 
     def filter_products(products)
-      filter_params = params.permit(:search_key, :category_id)
+      filter_params = params.permit(:search_key, :category)
       filter_params.each do |column_name, value|
         case column_name
         when "search_key"
-          products = products.where("name LIKE ? OR code LIKE?", value)
-        when "category_id"
+          products = products.where("(products.name LIKE ?) OR (products.code LIKE ?)", "%#{value}%", "%#{value}%")
+        when "category"
           products = products.where(category: value)
         else
           products
