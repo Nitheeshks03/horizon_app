@@ -9,11 +9,16 @@ module Products
     end
 
     def call!
-      products = Product.joins(:category).select(:name, :code, :description, :price, "categories.name as category_name").order(id: :desc)
-      filter_products(products)
+      products = Product.joins(:category).select(:name, :code, :description, :price, "categories.name as category_name")
+      products = filter_products(products)
+      paginate(products)
     end
 
     private
+
+    def paginate(records)
+      records.page(params[:page_number]).per(params[:page_size])
+    end
 
     def filter_products(products)
       filter_params = params.permit(:search_key, :category)

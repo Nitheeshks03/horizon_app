@@ -1,14 +1,13 @@
-<h2>Add products</h2>
-<hr/>
-
-<p>Download Sample Product Template</p>
-<%= link_to "Click here to download sample template", "/product_template/sample_template.xlsx" %>
-
-<hr/>
-
-<%= form_with url: import_products_path, method: :post, multipart: true do |form| %>
-  <%= form.file_field :file %>
-  <%= form.submit "Upload Products" %>
-<% end %>
-
-
+<div class="w-full absolute left-[25%] top-[200px]">
+  <div class="">
+    <p class="text-2xl mb-2">Sample Template</p>
+    <%= link_to "Click here to download sample template", "/product_template/sample_template.xlsx",class:"underline" %>
+  </div>
+  <div class="border h-[200px] p-5 mt-10">
+  <p class="text-2xl">Upload products through xlsx file</p>
+    <%= form_with url: import_products_path, method: :post, multipart: true do |form| %>
+      <%= form.file_field :file %>
+      <%= form.submit "Upload Products" %>
+    <% end %>
+  </div>
+</div>
