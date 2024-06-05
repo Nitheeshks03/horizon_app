@@ -9,7 +9,7 @@ module Products
     end
 
     def call!
-      products = Product.joins(:category).select(:name, :code, :description, :price, "categories.name as category_name")
+      products = Product.joins(:category).select(:id, :name, :code, :description, :price, "categories.name as category_name").order(id: :desc)
       products = filter_products(products)
       paginate(products)
     end
@@ -17,7 +17,7 @@ module Products
     private
 
     def paginate(records)
-      records.page(params[:page_number]).per(params[:page_size])
+      records.page(params[:page]).per(10)
     end
 
     def filter_products(products)
