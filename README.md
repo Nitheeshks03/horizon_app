@@ -28,6 +28,7 @@ Run the following commands to create and setup the database.
 
 ```ruby
 rails db:create
+rails db:migrate
 rails db:seed
 ```
 
