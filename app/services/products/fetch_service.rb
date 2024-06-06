@@ -25,7 +25,7 @@ module Products
       filter_params.each do |column_name, value|
         case column_name
         when "search_key"
-          products = products.where("(products.name LIKE ?) OR (products.code LIKE ?)", "%#{value}%", "%#{value}%")
+          products = products.where("(products.name ILIKE ?) OR (products.code ILIKE ?)", "%#{value}%", "%#{value}%")
         when "category"
           products = products.where(category: value)
         else
