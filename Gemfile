@@ -67,10 +67,14 @@ end
 # Use postgresql as the database for Active Record
 gem "pg", "~> 1.1"
 
+#For authentication
 gem "devise", "~> 4.9"
 
+# Read Excel and CSV files
 gem "roo", "~> 2.10.0"
 
+# Tailwind CSS integration
 gem "tailwindcss-rails", "~> 2.6"
 
+# For pagination
 gem 'kaminari'
