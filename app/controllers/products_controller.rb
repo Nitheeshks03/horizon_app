@@ -5,14 +5,16 @@ class ProductsController < ApplicationController
   end
 
   def import
-    @products = Products::ImportProductsService.new(params).call!
+    result = Products::ImportProductsService.new(params).call!
 
-    if @products.all?(&:save)
+    if result[:all_save] 
       redirect_to root_path
-      flash[:notice] = "You have successfully imported #{@products.length} products."
+      flash[:notice]= "Successfully imported all Products"
     else
-      flash[:error] = "Product import failed"
+      redirect_to new_product_path 
+      flash[:error] = result[:errors]
     end
+
   end
 
   def index

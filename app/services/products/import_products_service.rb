@@ -11,6 +11,7 @@ module Products
     def call!
       products_file = params[:file]
       @products = []
+      errors = []
 
       excel = Roo::Spreadsheet.open(products_file.tempfile.path)
       sheet = excel.sheet(0)
@@ -22,7 +23,17 @@ module Products
         @products << product
       end
 
-      return @products
+    all_save = true
+    @products.each do |product|
+      unless product.save
+        all_save = false
+        errors << "Failed to save product, #{product.name}: #{product.errors.full_messages.join(", ")}"
+      end
+    end
+
+     
+      {all_save: , errors:}
+     
     end
 
     private
