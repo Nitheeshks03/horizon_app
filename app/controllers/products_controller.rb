@@ -9,7 +9,7 @@ class ProductsController < ApplicationController
 
     if @products.all?(&:save)
       redirect_to root_path
-      flash[:notice] = "Product imported successfully"
+      flash[:notice] = "You have successfully imported #{@products.length} products."
     else
       flash[:error] = "Product import failed"
     end
